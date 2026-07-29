@@ -1,0 +1,2393 @@
+/* =====================================================
+   KU CAMPUS 3D MAP - RESPONSIVE UI
+===================================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", "Segoe UI", Arial, sans-serif;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #020617;
+}
+
+#map {
+  width: 100vw;
+  height: 100vh;
+  background: #020617;
+}
+
+/* ===============================
+   TOP BAR DESKTOP - MAP PAGE (MODERN GLASS)
+================================ */
+
+.topbar {
+  position: absolute;
+  top: 36px;
+  left: 50px;
+  right: 50px;
+  z-index: 100;
+
+  display: grid;
+  grid-template-columns: 280px 450px 1fr;
+  align-items: center;
+  gap: 24px;
+
+  /* Glassmorphism */
+  background: rgba(20, 20, 25, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+  
+  padding: 12px 32px;
+  border-radius: 100px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+.ku-logo {
+  width: 100px;
+  height: auto;
+  object-fit: contain;
+}
+
+.brand-text h1 {
+  font-size: 22px;
+  color: #ffffff;
+  font-weight: 900;
+  letter-spacing: -0.5px;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+.brand-text p {
+  display: block;
+  font-size: 12px;
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+/* ===============================
+   SEARCH BOX DESKTOP
+================================ */
+
+.search-box {
+  width: 100%;
+  height: 48px;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 0 20px;
+  
+  /* Pill Shape */
+  border-radius: 100px;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.3s ease;
+}
+
+.search-box:focus-within {
+  border-color: rgba(249, 115, 22, 0.5);
+  box-shadow: 0 0 15px rgba(249, 115, 22, 0.2);
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.search-icon {
+  font-size: 16px;
+  opacity: 0.7;
+}
+
+.search-box input {
+  width: 100%;
+  height: 100%;
+
+  border: none;
+  outline: none;
+  background: transparent;
+
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.search-box input::placeholder {
+  color: #94a3b8;
+}
+
+/* ===============================
+   DESKTOP NAV - MAP PAGE
+================================ */
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 36px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #cbd5e1;
+
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+
+  transition: 0.25s ease;
+}
+
+.nav-links a:hover {
+  color: #f97316;
+}
+
+.hamburger-btn,
+.mobile-search-btn {
+  display: none;
+}
+
+/* =====================================================
+   NAVIGATION MODE DESKTOP
+===================================================== */
+
+.navigation-mode {
+  position: absolute;
+  left: 50px;
+  bottom: 160px;
+  z-index: 82;
+
+  width: 160px;
+
+  /* Glassmorphism */
+  background: rgba(20, 20, 25, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-radius: 20px;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
+
+  padding: 14px;
+}
+
+.mode-title {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.nav-mode-switch {
+  display: flex;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 4px;
+  gap: 0;
+}
+
+.nav-mode-btn {
+  flex: 1;
+  border: none;
+  background: transparent;
+  color: #cbd5e1;
+  padding: 10px 4px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 700;
+  border-radius: 10px;
+  transition: all 0.25s ease;
+}
+
+.nav-mode-btn.active {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1), 0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* =====================================================
+   LEFT FILTER DESKTOP (MODERN GLASS PILLS)
+===================================================== */
+
+.filter-panel {
+  position: absolute;
+  top: 150px;
+  left: 50px;
+  z-index: 85;
+
+  width: 160px;
+  padding: 0;
+
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.filter-panel h3 {
+  position: absolute;
+  left: -38px;
+  top: 82px;
+
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 6px;
+}
+
+.filter-btn {
+  width: 100%;
+  height: 44px;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  margin: 0 0 10px 0;
+  padding: 0 16px;
+
+  /* Base Glass Button */
+  background: rgba(20, 20, 25, 0.5) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 14px !important;
+  backdrop-filter: blur(12px) !important;
+  color: #cbd5e1 !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  transition: all 0.25s ease !important;
+}
+
+.filter-btn:hover {
+  background: rgba(255, 255, 255, 0.05) !important;
+  color: #ffffff !important;
+  transform: translateX(4px);
+}
+
+/* Glowing Active State */
+.filter-btn.active {
+  border: 1px solid rgba(249, 115, 22, 0.7) !important;
+  background: rgba(249, 115, 22, 0.1) !important;
+  color: #fff !important;
+  box-shadow: 0 0 15px rgba(249, 115, 22, 0.3), inset 0 0 10px rgba(249, 115, 22, 0.15) !important;
+}
+
+.filter-scroll-btn {
+  display: none;
+}
+
+/* ===============================
+   WEATHER CARD DESKTOP
+================================ */
+
+.weather-card {
+  position: absolute;
+  left: 50px;
+  bottom: 40px;
+  z-index: 80;
+
+  width: 160px;
+  height: 100px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+
+  /* Glassmorphism */
+  background: rgba(20, 20, 25, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-radius: 20px;
+  box-shadow: 0 16px 50px rgba(0, 0, 0, 0.5);
+  color: white;
+}
+
+.weather-card .sun {
+  font-size: 28px;
+}
+
+.weather-card h2 {
+  font-size: 32px;
+  line-height: 1;
+  font-weight: 900;
+}
+
+.weather-card p {
+  margin-top: 6px;
+  font-size: 13px;
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+/* ===============================
+   INFO CARD - MAP PAGE DESKTOP
+================================ */
+
+.info-card {
+  position: absolute;
+  left: 50%;
+  bottom: 40px;
+  transform: translateX(-50%);
+  z-index: 75;
+
+  width: 500px;
+  min-height: 110px;
+  max-height: 300px;
+  overflow-y: auto;
+
+  padding: 24px 28px;
+
+  /* Glassmorphism */
+  background: rgba(20, 20, 25, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-radius: 24px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+  color: white;
+}
+
+.info-card h2 {
+  font-size: 22px;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.info-card p {
+  font-size: 14px;
+  color: #94a3b8;
+  line-height: 1.6;
+}
+
+.info-card strong {
+  color: #ffffff;
+}
+
+.info-card::-webkit-scrollbar {
+  width: 6px;
+}
+
+.info-card::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.info-card::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+.selected-card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.info-card-img {
+  width: 120px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.selected-card-content {
+  flex: 1;
+}
+
+.selected-card-content h2 {
+  font-size: 20px;
+  line-height: 1.2;
+  margin-bottom: 8px;
+}
+
+.selected-card-content p {
+  font-size: 14px;
+  color: #cbd5e1;
+  margin-bottom: 0;
+}
+
+/* ===============================
+   GET DIRECTIONS DESKTOP
+================================ */
+
+.directions-btn {
+  position: absolute;
+  right: 50px;
+  bottom: 40px;
+  z-index: 75;
+
+  width: 250px;
+  height: 60px;
+  padding: 0 34px;
+
+  border: none;
+  border-radius: 100px;
+  outline: none;
+
+  /* Rich Golden Gradient */
+  background: linear-gradient(180deg, #e2b080 0%, #8a5a19 100%);
+  color: #1a1a1a;
+  font-weight: 900;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  
+  /* Glow + Inner highlight */
+  box-shadow: 0 10px 40px rgba(212, 163, 115, 0.3), inset 0 2px 2px rgba(255,255,255,0.4);
+  border: 1px solid rgba(255,255,255,0.1);
+
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.directions-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 50px rgba(212, 163, 115, 0.4), inset 0 2px 2px rgba(255,255,255,0.4);
+}
+
+/* ===============================
+   MAP TOOLS DESKTOP (MODERN PILL)
+================================ */
+
+.map-tools {
+  position: absolute !important;
+  right: 50px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  bottom: auto !important;
+  width: 54px !important;
+  
+  /* Single Glass Pill Container */
+  background: rgba(20, 20, 25, 0.65) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border-radius: 30px !important;
+  
+  gap: 0 !important; 
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.5) !important;
+  
+  z-index: 90 !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.map-tools button {
+  background: transparent !important;
+  color: #fff !important;
+  box-shadow: none !important;
+  width: 100% !important;
+  height: 48px !important;
+  border-radius: 0 !important;
+  font-size: 20px !important;
+  font-weight: normal !important;
+  
+  /* Replaced borders with clean margins */
+  border: none !important;
+  outline: none !important;
+  margin-bottom: 4px !important;
+  
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  transition: 0.25s ease !important;
+}
+
+.map-tools button:last-child {
+  margin-bottom: 0 !important;
+}
+
+.map-tools button:hover {
+  background: rgba(255, 255, 255, 0.05) !important;
+}
+
+#locateBtn {
+  color: #f97316 !important; 
+}
+
+#toggle3DBtn {
+  font-size: 14px !important;
+  font-weight: 800 !important;
+}
+
+/* ===============================
+   LOCATION MODAL
+================================ */
+
+.location-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+
+  display: none;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(0, 0, 0, 0.56);
+  backdrop-filter: blur(9px);
+  -webkit-backdrop-filter: blur(9px);
+}
+
+.location-modal.show {
+  display: flex;
+}
+
+.location-box {
+  width: 430px;
+  max-width: calc(100vw - 32px);
+
+  padding: 34px 30px 30px;
+
+  border-radius: 24px;
+
+  background: rgba(15, 23, 42, 0.96);
+  border: 1px solid rgba(148, 163, 184, 0.22);
+
+  color: white;
+  text-align: center;
+
+  box-shadow: 0 30px 100px rgba(0, 0, 0, 0.55);
+}
+
+.location-icon {
+  width: 70px;
+  height: 70px;
+
+  margin: 0 auto 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 20px;
+
+  background: linear-gradient(135deg, #38bdf8, #0284c7);
+  font-size: 30px;
+
+  box-shadow: 0 18px 50px rgba(14, 165, 233, 0.35);
+}
+
+.location-box h2 {
+  font-size: 25px;
+  font-weight: 900;
+  margin-bottom: 12px;
+}
+
+.location-box p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #cbd5e1;
+  margin-bottom: 26px;
+}
+
+.location-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.location-actions button {
+  height: 52px;
+
+  border: none;
+  border-radius: 15px;
+
+  font-size: 15px;
+  font-weight: 900;
+
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.allow-location-btn {
+  background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+  color: white;
+}
+
+.deny-location-btn {
+  background: rgba(148, 163, 184, 0.18);
+  color: white;
+}
+
+.location-actions button:hover {
+  transform: translateY(-2px);
+}
+
+/* ===============================
+   POI MARKERS
+================================ */
+
+.poi-html-marker {
+  width: 30px;
+  height: 30px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+  background: rgba(20, 20, 25, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+
+  font-size: 15px;
+  cursor: pointer;
+
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+  transition: 0.2s ease;
+}
+
+.poi-html-marker:hover {
+  transform: scale(1.18);
+  background: #f97316;
+  border-color: #f97316;
+}
+
+/* ===============================
+   SEARCH DROPDOWN
+================================ */
+
+#searchDropdown {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+}
+
+#searchDropdown::-webkit-scrollbar {
+  width: 6px;
+}
+
+#searchDropdown::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+#searchDropdown::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+.search-result-item:first-child {
+  border-radius: 16px 16px 0 0;
+}
+
+.search-result-item:last-child {
+  border-bottom: none !important;
+  border-radius: 0 0 16px 16px;
+}
+
+/* ===============================
+   POPUPS
+================================ */
+
+.mini-popup-card {
+  min-width: 230px;
+  color: white;
+}
+
+.mini-popup-card h3 {
+  font-size: 15px;
+  font-weight: 900;
+  margin-bottom: 6px;
+}
+
+.mini-popup-card p {
+  font-size: 13px;
+  color: #cbd5e1;
+  margin-bottom: 8px;
+}
+
+.mini-popup-img {
+  width: 90%;
+  height: 75px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.hover-tooltip {
+  min-width: 120px;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.hover-tooltip span {
+  color: #cbd5e1;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.maplibregl-popup-content {
+  background: rgba(20, 20, 25, 0.9) !important;
+  backdrop-filter: blur(16px) !important;
+  color: white !important;
+
+  border: 1px solid rgba(249, 115, 22, 0.5) !important;
+  border-radius: 16px !important;
+
+  padding: 14px !important;
+
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.45) !important;
+}
+
+.maplibregl-popup-close-button {
+  color: white !important;
+  font-size: 18px !important;
+}
+
+.maplibregl-popup-tip {
+  border-top-color: rgba(20, 20, 25, 0.9) !important;
+}
+
+/* ===============================
+   MAPLIBRE ATTRIBUTION
+================================ */
+
+.maplibregl-ctrl-bottom-left {
+  margin-left: 22px;
+  margin-bottom: 20px;
+}
+
+.maplibregl-ctrl-scale {
+  background: rgba(15, 23, 42, 0.75) !important;
+  color: white !important;
+  border-color: rgba(255, 255, 255, 0.55) !important;
+  font-weight: 700;
+}
+
+.maplibregl-ctrl-logo,
+.maplibregl-ctrl-attrib {
+  opacity: 0.65;
+}
+
+.maplibregl-ctrl-bottom-right {
+  display: none !important;
+}
+
+/* =====================================================
+   MOBILE MENU
+===================================================== */
+
+.mobile-menu-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9997;
+
+  display: none;
+
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.mobile-menu-overlay.show {
+  display: block;
+}
+
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  right: -310px;
+
+  width: 300px;
+  max-width: 86vw;
+  height: 100vh;
+
+  z-index: 9998;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 22px;
+
+  background: rgba(15, 23, 42, 0.98);
+  border-left: 1px solid rgba(148, 163, 184, 0.22);
+
+  box-shadow: -20px 0 80px rgba(0, 0, 0, 0.55);
+
+  transition: 0.3s ease;
+}
+
+.mobile-menu.show {
+  right: 0;
+}
+
+.mobile-menu-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 28px;
+}
+
+.mobile-menu-header h2 {
+  color: white;
+  font-size: 22px;
+  font-weight: 900;
+}
+
+.mobile-menu-header button {
+  width: 42px;
+  height: 42px;
+
+  border: none;
+  border-radius: 14px;
+
+  background: rgba(255, 255, 255, 0.12);
+  color: white;
+
+  font-size: 28px;
+  font-weight: 800;
+
+  cursor: pointer;
+}
+
+.mobile-menu a {
+  text-decoration: none;
+
+  color: white;
+
+  padding: 17px 4px;
+
+  border-bottom: 1px solid rgba(148, 163, 184, 0.16);
+
+  font-size: 16px;
+  font-weight: 900;
+  letter-spacing: 0.8px;
+}
+
+.mobile-menu a:hover {
+  color: #f97316;
+}
+
+/* =====================================================
+   BOTTOM UI WRAPPER (Desktop bypass)
+===================================================== */
+.bottom-ui-wrapper {
+  display: contents; /* Desktop treats this as if it doesn't exist */
+}
+
+/* =====================================================
+   MOBILE RESPONSIVE - MAP PAGE (MODERN GLASS UI)
+===================================================== */
+@media (max-width: 900px) {
+  body {
+    overflow: hidden;
+  }
+
+  /* --- TOP BAR --- */
+  body.search-open .topbar {
+    border-radius: 24px !important;
+    padding-bottom: 12px !important;
+  }
+
+  .topbar {
+    top: 16px !important;
+    left: 16px !important;
+    right: 16px !important;
+    width: calc(100vw - 32px) !important;
+    z-index: 100 !important;
+    display: grid !important;
+    grid-template-columns: auto 1fr 44px 44px !important;
+    gap: 10px !important;
+    padding: 8px 12px !important;
+    border-radius: 100px !important;
+    
+    /* Modern Glassmorphism */
+    background: rgba(20, 20, 25, 0.65) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    backdrop-filter: blur(24px) !important;
+    -webkit-backdrop-filter: blur(24px) !important;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5) !important;
+    
+    align-items: center !important;
+    box-sizing: border-box !important;
+    transition: border-radius 0.3s ease, padding 0.3s ease !important;
+  }
+
+  .brand {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .ku-logo {
+    width: 80px;
+    height: 34px;
+  }
+
+  .brand-text {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .brand-text h1 {
+    font-size: 15px;
+    font-weight: 800;
+  }
+
+  .brand-text p {
+    display: block;
+    margin-top: 0;
+    font-size: 11px;
+    color: #94a3b8;
+    font-weight: 600;
+  }
+
+  .mobile-search-btn, .hamburger-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    /* Darker translucent buttons for icons */
+    background: rgba(255, 255, 255, 0.06) !important; 
+    color: #fff;
+    cursor: pointer;
+  }
+  .mobile-search-btn { grid-column: 3 / 4; grid-row: 1 / 2; font-size: 16px; }
+  .hamburger-btn { grid-column: 4 / 5; grid-row: 1 / 2; font-size: 18px; }
+
+  .search-box {
+    grid-column: 1 / 5;
+    grid-row: 2 / 3;
+    width: 100%;
+    height: 0;
+    padding: 0 16px;
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
+    border-radius: 100px !important; 
+    background: rgba(0, 0, 0, 0.4) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    margin-top: 0;
+    transition: all 0.3s ease;
+  }
+
+  .search-box.show-mobile-search {
+    height: 44px;
+    opacity: 1;
+    pointer-events: auto;
+    margin-top: 10px;
+  }
+
+  .search-box input {
+    font-size: 13px;
+    color: #ffffff;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  /* --- FILTERS --- */
+  .filter-panel {
+    top: 86px !important;
+    left: 16px !important;
+    right: auto !important;
+    position: absolute !important;
+    z-index: 90 !important;
+    width: calc(100vw - 32px) !important;
+    display: none !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    gap: 10px !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    padding: 0 0 5px 0 !important;
+    scrollbar-width: none !important;
+    -webkit-overflow-scrolling: touch !important;
+    transition: top 0.3s ease !important; 
+  }
+
+  .filter-panel::-webkit-scrollbar {
+    display: none;
+  }
+
+  .filter-panel h3, .filter-scroll-btn {
+    display: none !important;
+  }
+
+  .filter-btn {
+    width: auto !important;
+    min-width: max-content !important;
+    flex: 0 0 auto !important; 
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    height: 38px !important;
+    padding: 0 16px !important;
+    margin: 0 !important;
+    
+    /* Base Glass Button */
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 100px !important;
+    background: rgba(20, 20, 25, 0.5) !important;
+    backdrop-filter: blur(12px) !important;
+    color: #cbd5e1 !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    white-space: nowrap !important;
+    cursor: pointer !important;
+    transition: all 0.25s ease !important;
+  }
+
+  /* Target UI Glowing Active State */
+  .filter-btn.active {
+    border: 1px solid rgba(249, 115, 22, 0.7) !important;
+    background: rgba(249, 115, 22, 0.1) !important; /* Hollow center */
+    color: #fff !important;
+    box-shadow: 0 0 15px rgba(249, 115, 22, 0.3), inset 0 0 10px rgba(249, 115, 22, 0.15) !important;
+  }
+
+  #nearbyBtn {
+    display: none !important;
+  }
+
+  .mobile-nearby-btn {
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 91;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    height: 40px;
+    padding: 0 20px;
+    
+    /* Hollow Glow Style */
+    border: 1px solid rgba(249, 115, 22, 0.6) !important;
+    border-radius: 100px;
+    background: rgba(20, 20, 25, 0.5) !important;
+    backdrop-filter: blur(12px) !important;
+    color: #fed7aa;
+    font-size: 13px;
+    font-weight: 900;
+    box-shadow: 0 8px 25px rgba(249, 115, 22, 0.2) !important;
+    
+    cursor: pointer;
+    transition: top 0.3s ease !important;
+  }
+
+  /* Perfectly balanced spacing when search is expanded */
+  body.search-open .filter-panel { top: 152px !important; }
+  body.search-open .mobile-nearby-btn { top: 208px !important; }
+  body.search-open .map-tools { top: 268px !important; }
+
+  .weather-card {
+    display: none;
+  }
+
+  /* --- MAP TOOLS (Right Side Modern Pill) --- */
+  .map-tools {
+    right: 16px !important;
+    top: 215px !important;
+    bottom: auto !important;
+    transform: none !important;
+    width: 50px !important; 
+    
+    /* Single Glass Pill Container */
+    background: rgba(20, 20, 25, 0.65) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border-radius: 30px !important;
+    padding: 6px 4px !important;
+    gap: 0 !important; 
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.4) !important;
+    
+    z-index: 88 !important;
+    transition: top 0.3s ease !important;
+  }
+
+  .map-tools button {
+    background: transparent !important;
+    color: #fff !important;
+    box-shadow: none !important;
+    width: 100% !important; 
+    height: 46px !important; 
+    border-radius: 0 !important;
+    font-size: 20px !important;
+    font-weight: normal !important;
+    
+    /* Replaced borders with clean margins */
+    border: none !important;
+    outline: none !important;
+    margin-bottom: 4px !important;
+  }
+
+  .map-tools button:last-child {
+    margin-bottom: 0 !important;
+  }
+
+  #resetViewBtn, #locateBtn {
+    background: transparent !important;
+    color: #fff !important;
+  }
+
+  #locateBtn {
+    color: #f97316 !important; 
+  }
+
+  #toggle3DBtn {
+    margin-top: 0 !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+  }
+
+  /* --- BOTTOM UI WRAPPER (Compact Mobile View) --- */
+  .bottom-ui-wrapper {
+    display: flex !important;
+    position: absolute !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100vw !important;
+    box-sizing: border-box !important;
+    z-index: 92 !important;
+    
+    background: linear-gradient(180deg, rgba(25, 30, 40, 0.85) 0%, rgba(10, 15, 20, 0.95) 100%) !important;
+    backdrop-filter: blur(30px) !important;
+    -webkit-backdrop-filter: blur(30px) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+    
+    border-radius: 20px 20px 0 0 !important;
+    /* Massively reduced padding to save space */
+    padding: 10px 16px 14px !important; 
+    flex-direction: column !important;
+    /* Tighter gaps between elements */
+    gap: 8px !important; 
+    box-shadow: 0 -10px 50px rgba(0, 0, 0, 0.7) !important;
+    margin: 0 !important;
+    transform: none !important;
+  }
+
+  .bottom-ui-wrapper::before {
+    content: '';
+    width: 36px;
+    height: 3px; /* Thinner drag handle */
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 2px;
+    margin: 0 auto 4px auto;
+  }
+
+  .info-card {
+    position: relative !important;
+    left: 0 !important; 
+    right: 0 !important; 
+    bottom: auto !important;
+    top: auto !important;
+    width: 100% !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important; 
+    min-height: auto !important;
+    max-height: none !important;
+    transform: translateX(0) !important; 
+    overflow: visible !important;
+  }
+
+  .info-card h2 {
+    font-size: 16px !important; /* Smaller text */
+    margin-bottom: 2px !important;
+  }
+
+  .info-card p {
+    font-size: 12px !important; /* Smaller text */
+    color: #94a3b8;
+    line-height: 1.3 !important;
+  }
+
+  .selected-card {
+    width: 100% !important; 
+    gap: 10px !important; /* Tighter image gap */
+  }
+
+  .info-card-img {
+    width: 65px !important;  /* Much smaller image */
+    height: 50px !important; /* Much smaller image */
+    border-radius: 10px !important;
+  }
+
+  .selected-card-content h2 {
+    font-size: 16px !important; /* Smaller text */
+  }
+
+  /* Override Navigation Mode inside wrapper */
+  .navigation-mode {
+    position: relative !important;
+    left: 0 !important; 
+    right: 0 !important; 
+    bottom: auto !important;
+    top: auto !important;
+    width: 100% !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    transform: translateX(0) !important;
+  }
+
+  .mode-title {
+    display: none !important; /* Hides "Navigation Mode" text to save vertical space! */
+  }
+
+  .nav-mode-switch {
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 10px !important;
+    padding: 3px !important; /* Thinner */
+    display: flex;
+    gap: 0;
+  }
+
+  .nav-mode-btn {
+    flex: 1;
+    padding: 6px !important; /* Thinner */
+    border-radius: 6px !important;
+    font-size: 12px !important; /* Smaller text */
+    color: #cbd5e1;
+    background: transparent;
+  }
+
+  .nav-mode-btn.active {
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1), 0 4px 12px rgba(0,0,0,0.2);
+  }
+
+  /* Target UI Gradient Start Button */
+  .directions-btn {
+    position: relative !important;
+    left: 0 !important; 
+    right: 0 !important; 
+    bottom: auto !important;
+    top: auto !important;
+    width: 100% !important;
+    height: 40px !important; /* Thinner button */
+    border-radius: 100px !important;
+    
+    background: linear-gradient(180deg, #e2b080 0%, #8a5a19 100%) !important;
+    color: #1a1a1a !important;
+    font-weight: 900 !important;
+    font-size: 13px !important; /* Smaller text */
+    letter-spacing: 0.5px;
+    
+    box-shadow: 0 8px 30px rgba(212, 163, 115, 0.3), inset 0 2px 2px rgba(255,255,255,0.4) !important;
+    border: 1px solid rgba(255,255,255,0.1) !important;
+    
+    margin: 0 !important;
+    transform: translateX(0) !important;
+  }
+
+  #searchDropdown {
+    top: 190px !important;
+    left: 16px !important;
+    width: calc(100vw - 32px) !important;
+    transform: none !important;
+    max-height: 240px !important;
+    z-index: 9999 !important;
+  }
+  body.search-open #searchDropdown { top: 248px !important; }
+
+  .location-box {
+    width: calc(100vw - 32px);
+    padding: 28px 22px 24px;
+  }
+  .location-actions { grid-template-columns: 1fr; }
+  .maplibregl-ctrl-bottom-right { display: none !important; }
+  
+  .maplibregl-ctrl-bottom-left { 
+    margin-left: 12px !important; 
+    margin-bottom: 220px !important; /* Adjusted margin to match the new slimmer bottom UI */
+  } 
+
+  /* --- MOBILE MAP POPUP FIX --- */
+  .maplibregl-popup-content {
+    padding: 10px 12px !important; /* Tighter padding to save space */
+    border-radius: 12px !important; /* Slightly sharper, modern corners */
+  }
+
+  .mini-popup-card {
+    min-width: 160px !important; /* Allows it to be narrower */
+    max-width: 200px !important; /* Prevents it from stretching across the screen */
+  }
+
+  .mini-popup-card h3 {
+    font-size: 14px !important; /* Smaller title */
+    margin-bottom: 2px !important; /* Tighter gap below title */
+    padding-right: 18px !important; /* Keeps text from hitting the close button */
+  }
+
+  .mini-popup-card p {
+    font-size: 11px !important; /* Smaller, cleaner description text */
+    margin-bottom: 2px !important;
+    line-height: 1.3 !important;
+  }
+
+  .maplibregl-popup-close-button {
+    font-size: 18px !important; 
+    top: 6px !important;
+    right: 6px !important;
+    width: 24px !important;
+    height: 24px !important;
+  }
+  
+  .mini-popup-img {
+    height: 60px !important; /* Shrinks the image if there is one */
+    margin-top: 4px !important;
+  }
+}
+
+/* =====================================================
+   INFO PAGES: ABOUT / SCHOOLS / CAMPUS / HELP
+===================================================== */
+
+/* Allow scrolling on info pages */
+body.info-page-body {
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+
+  background:
+    radial-gradient(circle at top left, rgba(249, 115, 22, 0.14), transparent 34%),
+    radial-gradient(circle at top right, rgba(34, 197, 94, 0.12), transparent 34%),
+    linear-gradient(135deg, #020617, #07111f 45%, #020617);
+
+  color: #ffffff;
+}
+
+/* Page wrapper */
+body.info-page-body .info-page {
+  width: min(1180px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 28px 0 80px;
+}
+
+/* =====================================================
+   FIX CONFLICT WITH MAP PAGE .info-card
+===================================================== */
+
+body.info-page-body .info-card,
+body.info-page-body .info-card-large,
+body.info-page-body .campus-place-card,
+body.info-page-body .school-card,
+body.info-page-body .help-step-card,
+body.info-page-body .help-control-item,
+body.info-page-body .info-section,
+body.info-page-body .tech-section {
+  position: static !important;
+  left: auto !important;
+  right: auto !important;
+  top: auto !important;
+  bottom: auto !important;
+
+  transform: none !important;
+
+  width: auto !important;
+  min-height: auto !important;
+  max-height: none !important;
+
+  overflow: visible !important;
+
+  z-index: auto !important;
+}
+
+/* =====================================================
+   INFO NAVBAR
+===================================================== */
+
+body.info-page-body .info-navbar {
+  position: sticky;
+  top: 16px;
+  z-index: 1000;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+
+  padding: 16px 20px;
+
+  border-radius: 24px;
+
+  background: rgba(15, 23, 42, 0.88);
+  border: 1px solid rgba(148, 163, 184, 0.22);
+
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+
+  box-shadow: 0 22px 70px rgba(0, 0, 0, 0.42);
+}
+
+body.info-page-body .info-navbar .brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: max-content;
+}
+
+body.info-page-body .info-navbar .brand a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+body.info-page-body .info-navbar .brand img {
+  width: 92px;
+  height: auto;
+  object-fit: contain;
+}
+
+body.info-page-body .info-navbar .brand-text h1 {
+  font-size: 25px;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.5px;
+  color: #ffffff;
+}
+
+body.info-page-body .info-navbar .brand-text p {
+  display: block;
+  margin-top: 4px;
+
+  font-size: 12px;
+  font-weight: 700;
+  color: #cbd5e1;
+}
+
+body.info-page-body .info-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+body.info-page-body .info-nav-links a {
+  text-decoration: none;
+
+  padding: 11px 15px;
+  border-radius: 999px;
+
+  color: #cbd5e1;
+
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 0.6px;
+
+  transition: 0.25s ease;
+}
+
+body.info-page-body .info-nav-links a:hover,
+body.info-page-body .info-nav-links a.active {
+  color: #ffffff;
+  background: rgba(249, 115, 22, 0.2);
+  box-shadow: inset 0 0 0 1px rgba(249, 115, 22, 0.28);
+}
+
+/* =====================================================
+   HERO SECTION
+===================================================== */
+
+body.info-page-body .info-hero {
+  margin-top: 52px;
+  padding: 70px 54px;
+
+  border-radius: 34px;
+
+  background:
+    linear-gradient(135deg, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.76)),
+    radial-gradient(circle at top right, rgba(249, 115, 22, 0.22), transparent 38%);
+
+  border: 1px solid rgba(148, 163, 184, 0.18);
+
+  box-shadow: 0 30px 100px rgba(0, 0, 0, 0.46);
+}
+
+body.info-page-body .hero-badge {
+  display: inline-flex;
+  align-items: center;
+
+  margin-bottom: 22px;
+  padding: 9px 15px;
+
+  border-radius: 999px;
+
+  background: rgba(249, 115, 22, 0.15);
+  border: 1px solid rgba(249, 115, 22, 0.28);
+
+  color: #fdba74;
+
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 0.8px;
+}
+
+body.info-page-body .info-hero h1 {
+  max-width: 900px;
+
+  font-size: clamp(36px, 6vw, 72px);
+  line-height: 1.02;
+  letter-spacing: -2.4px;
+  font-weight: 950;
+
+  color: #ffffff;
+}
+
+body.info-page-body .info-hero h1 span {
+  display: block;
+
+  background: linear-gradient(135deg, #fb923c, #f97316, #22c55e);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+body.info-page-body .info-hero p {
+  max-width: 780px;
+  margin-top: 24px;
+
+  color: #cbd5e1;
+
+  font-size: 18px;
+  line-height: 1.75;
+  font-weight: 500;
+}
+
+body.info-page-body .hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+
+  margin-top: 34px;
+}
+
+body.info-page-body .primary-link,
+body.info-page-body .secondary-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 52px;
+  padding: 0 22px;
+
+  border-radius: 16px;
+
+  text-decoration: none;
+
+  font-size: 15px;
+  font-weight: 900;
+
+  transition: 0.25s ease;
+}
+
+body.info-page-body .primary-link {
+  background: linear-gradient(135deg, #fb923c, #f97316, #ea580c);
+  color: #ffffff;
+  box-shadow: 0 18px 50px rgba(249, 115, 22, 0.35);
+}
+
+body.info-page-body .secondary-link {
+  background: rgba(148, 163, 184, 0.12);
+  color: #ffffff;
+  border: 1px solid rgba(148, 163, 184, 0.22);
+}
+
+body.info-page-body .primary-link:hover,
+body.info-page-body .secondary-link:hover {
+  transform: translateY(-2px);
+}
+
+/* =====================================================
+   ABOUT GRID / COMMON CARDS
+===================================================== */
+
+body.info-page-body .info-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 18px;
+
+  margin-top: 36px;
+  align-items: stretch;
+}
+
+body.info-page-body .info-card-large {
+  grid-row: span 2;
+  padding: 34px;
+}
+
+body.info-page-body .info-card {
+  padding: 28px;
+}
+
+body.info-page-body .info-card-large,
+body.info-page-body .info-card,
+body.info-page-body .campus-place-card,
+body.info-page-body .school-card,
+body.info-page-body .help-step-card,
+body.info-page-body .help-control-item,
+body.info-page-body .info-section,
+body.info-page-body .tech-section {
+  border-radius: 26px;
+
+  background: rgba(15, 23, 42, 0.84);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.34);
+
+  transition: 0.25s ease;
+}
+
+body.info-page-body .info-card-large:hover,
+body.info-page-body .info-card:hover,
+body.info-page-body .campus-place-card:hover,
+body.info-page-body .school-card:hover,
+body.info-page-body .help-step-card:hover,
+body.info-page-body .help-control-item:hover {
+  transform: translateY(-4px) !important;
+  border-color: rgba(249, 115, 22, 0.32);
+}
+
+body.info-page-body .card-icon,
+body.info-page-body .campus-place-icon,
+body.info-page-body .school-icon {
+  width: 52px;
+  height: 52px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 18px;
+
+  border-radius: 18px;
+
+  background: rgba(249, 115, 22, 0.14);
+
+  font-size: 25px;
+}
+
+body.info-page-body .info-card-large h2,
+body.info-page-body .info-section h2,
+body.info-page-body .tech-section h2 {
+  font-size: 30px;
+  font-weight: 950;
+  letter-spacing: -0.8px;
+  color: #ffffff;
+}
+
+body.info-page-body .info-card h3,
+body.info-page-body .campus-place-card h3,
+body.info-page-body .school-card h3,
+body.info-page-body .help-step-card h3,
+body.info-page-body .help-control-item h4 {
+  font-size: 20px;
+  font-weight: 900;
+  color: #ffffff;
+}
+
+body.info-page-body .info-card p,
+body.info-page-body .info-card-large p,
+body.info-page-body .campus-place-card p,
+body.info-page-body .school-card p,
+body.info-page-body .help-step-card p,
+body.info-page-body .help-control-item p,
+body.info-page-body .info-section p,
+body.info-page-body .tech-section p {
+  margin-top: 10px;
+
+  color: #cbd5e1;
+
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+/* =====================================================
+   OTHER INFO SECTIONS
+===================================================== */
+
+body.info-page-body .info-section,
+body.info-page-body .tech-section {
+  margin-top: 36px;
+  padding: 38px;
+}
+
+body.info-page-body .section-heading span {
+  display: inline-flex;
+
+  margin-bottom: 10px;
+
+  color: #fb923c;
+
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+body.info-page-body .reason-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+
+  margin-top: 24px;
+}
+
+body.info-page-body .reason-item {
+  padding: 24px;
+
+  border-radius: 22px;
+
+  background: rgba(2, 6, 23, 0.46);
+  border: 1px solid rgba(148, 163, 184, 0.14);
+}
+
+body.info-page-body .reason-item strong {
+  display: inline-flex;
+
+  margin-bottom: 12px;
+
+  color: #f97316;
+
+  font-size: 24px;
+  font-weight: 950;
+}
+
+body.info-page-body .reason-item p {
+  margin-top: 0;
+}
+
+/* Campus / Schools */
+body.info-page-body .campus-place-grid,
+body.info-page-body .school-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+
+  margin-top: 36px;
+}
+
+body.info-page-body .campus-place-card,
+body.info-page-body .school-card {
+  padding: 28px;
+}
+
+/* Help */
+body.info-page-body .help-steps {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+
+  margin-top: 36px;
+}
+
+body.info-page-body .help-step-card {
+  display: flex;
+  gap: 18px;
+  padding: 28px;
+}
+
+body.info-page-body .step-number {
+  width: 54px;
+  height: 54px;
+  min-width: 54px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 18px;
+
+  background: linear-gradient(135deg, #fb923c, #f97316);
+  color: #ffffff;
+
+  font-size: 18px;
+  font-weight: 950;
+
+  box-shadow: 0 14px 38px rgba(249, 115, 22, 0.35);
+}
+
+body.info-page-body .help-control-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+
+  margin-top: 24px;
+}
+
+body.info-page-body .help-control-item {
+  padding: 24px;
+}
+
+body.info-page-body .help-control-item span {
+  display: inline-flex;
+  margin-bottom: 14px;
+  font-size: 28px;
+}
+
+/* Tech */
+body.info-page-body .tech-section {
+  display: grid;
+  grid-template-columns: 1fr 1.35fr;
+  gap: 28px;
+  align-items: center;
+}
+
+body.info-page-body .tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+body.info-page-body .tech-tags span {
+  display: inline-flex;
+  align-items: center;
+
+  min-height: 42px;
+  padding: 0 15px;
+
+  border-radius: 999px;
+
+  background: rgba(249, 115, 22, 0.14);
+  border: 1px solid rgba(249, 115, 22, 0.22);
+
+  color: #fed7aa;
+
+  font-size: 14px;
+  font-weight: 900;
+}
+
+/* =====================================================
+   RESPONSIVE INFO PAGES
+===================================================== */
+
+@media (max-width: 1050px) {
+  body.info-page-body .info-page {
+    width: min(100% - 32px, 900px);
+  }
+
+  body.info-page-body .info-navbar {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  body.info-page-body .info-nav-links {
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    scrollbar-width: none;
+  }
+
+  body.info-page-body .info-nav-links::-webkit-scrollbar {
+    display: none;
+  }
+
+  body.info-page-body .info-nav-links a {
+    min-width: max-content;
+  }
+
+  body.info-page-body .info-grid,
+  body.info-page-body .campus-place-grid,
+  body.info-page-body .school-grid,
+  body.info-page-body .help-control-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  body.info-page-body .info-card-large {
+    grid-column: 1 / -1;
+    grid-row: auto;
+  }
+
+  body.info-page-body .reason-list {
+    grid-template-columns: 1fr;
+  }
+
+  body.info-page-body .tech-section {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 700px) {
+  body.info-page-body .info-page {
+    width: calc(100% - 20px);
+    padding: 10px 0 42px;
+  }
+
+  body.info-page-body .info-navbar {
+    top: 8px;
+    padding: 12px;
+    border-radius: 20px;
+    gap: 12px;
+  }
+
+  body.info-page-body .info-navbar .brand {
+    width: 100%;
+    gap: 10px;
+  }
+
+  body.info-page-body .info-navbar .brand img {
+    width: 62px;
+  }
+
+  body.info-page-body .info-navbar .brand-text h1 {
+    font-size: 19px;
+  }
+
+  body.info-page-body .info-navbar .brand-text p {
+    font-size: 10px;
+  }
+
+  body.info-page-body .info-nav-links {
+    gap: 7px;
+  }
+
+  body.info-page-body .info-nav-links a {
+    padding: 9px 12px;
+    font-size: 12px;
+    letter-spacing: 0.4px;
+  }
+
+  body.info-page-body .info-hero {
+    margin-top: 28px;
+    padding: 34px 20px;
+    border-radius: 26px;
+  }
+
+  body.info-page-body .hero-badge {
+    font-size: 11px;
+    padding: 8px 12px;
+  }
+
+  body.info-page-body .info-hero h1 {
+    font-size: 34px;
+    line-height: 1.06;
+    letter-spacing: -1.2px;
+  }
+
+  body.info-page-body .info-hero p {
+    margin-top: 18px;
+    font-size: 15px;
+    line-height: 1.65;
+  }
+
+  body.info-page-body .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+    margin-top: 24px;
+  }
+
+  body.info-page-body .primary-link,
+  body.info-page-body .secondary-link {
+    width: 100%;
+    min-height: 50px;
+  }
+
+  body.info-page-body .info-grid,
+  body.info-page-body .campus-place-grid,
+  body.info-page-body .school-grid,
+  body.info-page-body .help-steps,
+  body.info-page-body .help-control-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    margin-top: 22px;
+  }
+
+  body.info-page-body .info-card-large,
+  body.info-page-body .info-card,
+  body.info-page-body .campus-place-card,
+  body.info-page-body .school-card,
+  body.info-page-body .help-step-card,
+  body.info-page-body .help-control-item,
+  body.info-page-body .info-section,
+  body.info-page-body .tech-section {
+    border-radius: 22px;
+    padding: 22px;
+  }
+
+  body.info-page-body .info-card-large h2,
+  body.info-page-body .info-section h2,
+  body.info-page-body .tech-section h2 {
+    font-size: 25px;
+  }
+
+  body.info-page-body .info-card h3,
+  body.info-page-body .campus-place-card h3,
+  body.info-page-body .school-card h3,
+  body.info-page-body .help-step-card h3 {
+    font-size: 18px;
+  }
+
+  body.info-page-body .help-step-card {
+    gap: 14px;
+  }
+
+  body.info-page-body .step-number {
+    width: 46px;
+    height: 46px;
+    min-width: 46px;
+
+    border-radius: 15px;
+
+    font-size: 15px;
+  }
+
+  body.info-page-body .card-icon,
+  body.info-page-body .campus-place-icon,
+  body.info-page-body .school-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 15px;
+    font-size: 22px;
+  }
+
+  body.info-page-body .reason-list {
+    gap: 14px;
+  }
+
+  body.info-page-body .reason-item {
+    padding: 20px;
+  }
+
+  body.info-page-body .tech-tags span {
+    min-height: 38px;
+    font-size: 12px;
+    padding: 0 12px;
+  }
+}
+
+@media (max-width: 420px) {
+  body.info-page-body .info-hero h1 {
+    font-size: 30px;
+  }
+
+  body.info-page-body .info-navbar .brand img {
+    width: 54px;
+  }
+
+  body.info-page-body .info-navbar .brand-text h1 {
+    font-size: 17px;
+  }
+
+  body.info-page-body .info-nav-links a {
+    font-size: 11px;
+    padding: 8px 10px;
+  }
+
+  body.info-page-body .help-step-card {
+    flex-direction: column;
+  }
+}
+
+/* =====================================================
+   LIGHT MODE UI THEME (For Daylight Visibility)
+===================================================== */
+
+/* Invert Glass Containers */
+body.light-mode .topbar,
+body.light-mode .map-tools,
+body.light-mode .navigation-mode,
+body.light-mode .info-card,
+body.light-mode .weather-card,
+body.light-mode .filter-panel,
+body.light-mode #searchDropdown,
+body.light-mode .maplibregl-popup-content,
+body.light-mode .poi-html-marker {
+  background: rgba(255, 255, 255, 0.85) !important;
+  border-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+body.light-mode .bottom-ui-wrapper {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(240, 244, 248, 0.95) 100%) !important;
+  border-top: 1px solid rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Invert Text Colors */
+body.light-mode .brand-text h1,
+body.light-mode .info-card h2,
+body.light-mode .mode-title,
+body.light-mode .weather-card h2,
+body.light-mode .map-tools button,
+body.light-mode .search-result-item,
+body.light-mode .mini-popup-card h3 {
+  color: #0f172a !important;
+}
+
+body.light-mode .brand-text p,
+body.light-mode .info-card p,
+body.light-mode .weather-card p,
+body.light-mode .mini-popup-card p {
+  color: #475569 !important;
+}
+
+/* Invert Buttons & Inputs */
+body.light-mode .mobile-search-btn, 
+body.light-mode .hamburger-btn,
+body.light-mode .search-box {
+  background: rgba(0, 0, 0, 0.05) !important;
+  color: #0f172a !important;
+  border-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+body.light-mode .search-box input {
+  color: #0f172a !important;
+}
+body.light-mode .search-box input::placeholder {
+  color: #64748b !important;
+}
+
+/* Invert Filter Buttons */
+body.light-mode .filter-btn {
+  background: rgba(255, 255, 255, 0.7) !important;
+  color: #334155 !important;
+  border-color: rgba(0, 0, 0, 0.15) !important;
+}
+body.light-mode .filter-btn.active {
+  background: rgba(249, 115, 22, 0.1) !important;
+  color: #ea580c !important;
+  border-color: rgba(249, 115, 22, 0.5) !important;
+}
+
+/* Misc Detail Fixes */
+body.light-mode .nav-mode-btn { color: #475569; }
+body.light-mode .nav-mode-btn.active { background: rgba(0, 0, 0, 0.05); color: #0f172a; }
+body.light-mode .nav-mode-switch { background: rgba(0, 0, 0, 0.05); border-color: rgba(0, 0, 0, 0.1); }
+body.light-mode .map-tools button { border: none !important; }
+body.light-mode #locateBtn { color: #ea580c !important; }
+body.light-mode .bottom-ui-wrapper::before { background: rgba(0, 0, 0, 0.2); }
+body.light-mode .search-result-item { border-bottom: 1px solid rgba(0,0,0,0.08) !important; }
+
+
+/* =====================================================
+   FULLSCREEN MOBILE SEARCH STYLES
+===================================================== */
+.mobile-search-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100dvh;
+  background-color: #020617; /* Matches your map background */
+  z-index: 999999;
+  display: flex;
+  flex-direction: column;
+  transform: translateY(100%); /* Hidden off-screen by default */
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* When active, slide it up */
+body.search-open .mobile-search-overlay {
+  transform: translateY(0);
+}
+
+/* CRITICAL: Hide all map UI elements when search is open so they don't get squished by the keyboard */
+body.search-open .bottom-ui-wrapper,
+body.search-open .map-tools,
+body.search-open .mobile-nearby-btn,
+body.search-open .topbar,
+body.search-open .weather-card,
+body.search-open .maplibregl-ctrl-bottom-left {
+  display: none !important;
+}
+
+/* Header: Back arrow and Input */
+.ms-header {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  background: rgba(20, 20, 25, 0.95);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.ms-back-btn {
+  background: none;
+  border: none;
+  margin-right: 15px;
+  padding: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ms-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  outline: none;
+}
+.ms-input::placeholder { color: #64748b; font-weight: 500; }
+
+/* Filter Chips (Horizontal Scroll) */
+.ms-filters-container {
+  padding: 15px 0;
+  background-color: #020617;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.ms-filters-scroll {
+  display: flex;
+  overflow-x: auto;
+  padding: 0 20px;
+  gap: 10px;
+  scrollbar-width: none; 
+  -ms-overflow-style: none;
+  -webkit-overflow-scrolling: touch;
+}
+.ms-filters-scroll::-webkit-scrollbar { display: none; }
+
+.ms-filter-chip {
+  background: rgba(20, 20, 25, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #cbd5e1;
+  padding: 8px 16px;
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.ms-filter-chip.active {
+  background: rgba(249, 115, 22, 0.15); 
+  border-color: #f97316;
+  color: #f97316;
+}
+
+/* Results Container */
+.ms-results-container {
+  flex: 1;
+  overflow-y: auto;
+  background-color: #020617;
+}
+
+.ms-empty-state {
+  text-align: center;
+  color: #64748b;
+  padding: 40px 20px;
+  font-size: 14px;
+}
+
+/* ========================================== */
+/* IMAGE LIGHTBOX MODAL STYLES                */
+/* ========================================== */
+.image-modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100dvh; /* Dynamic viewport height fixes mobile vertical alignment */
+  background: rgba(15, 23, 42, 0.85); /* Matches your dark theme */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 99999; /* Ensures it floats above MapLibre controls */
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  padding: 20px; /* Prevents image from touching screen edges */
+  box-sizing: border-box;
+  transition: opacity 0.3s ease;
+}
+
+.image-modal-overlay.show {
+  display: flex;
+  opacity: 1;
+}
+
+.image-modal-content {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 12px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+  transform: scale(0.95);
+  transition: transform 0.3s ease;
+  object-fit: contain;
+  margin: auto;
+}
+
+.image-modal-overlay.show .image-modal-content {
+  transform: scale(1);
+}
+
+.image-modal-close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  color: white;
+  font-size: 40px;
+  font-weight: 300;
+  cursor: pointer;
+  background: none;
+  border: none;
+  transition: color 0.2s;
+  z-index: 100000;
+}
+
+.image-modal-close:hover {
+  color: #f97316; /* KU orange accent */
+}
+
+/* Make images in cards/popups look clickable */
+.info-card-img, .mini-popup-img {
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.info-card-img:hover, .mini-popup-img:hover {
+  opacity: 0.8;
+}
+
+/* Mobile specific tweaks */
+@media (max-width: 900px) {
+  .image-modal-close {
+    top: 15px;
+    right: 20px;
+    font-size: 36px;
+  }
+}

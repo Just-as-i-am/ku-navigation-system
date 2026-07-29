@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>KU Campus 3D Map</title>
+
+  <link
+    href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <div id="map"></div>
+
+  <div class="location-modal" id="locationModal">
+    <div class="location-box">
+      <div class="location-icon">📍</div>
+
+      <h2>Allow Location Access</h2>
+
+      <p>
+        Enable your location to get directions from your current position
+        to buildings, departments, gates and cafes inside the campus.
+      </p>
+
+      <div class="location-actions">
+        <button id="allowLocationBtn" class="allow-location-btn">
+          Allow Location
+        </button>
+
+        <button id="denyLocationBtn" class="deny-location-btn">
+          Not Now
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <header class="topbar">
+
+    <div class="brand">
+      <img
+        src="icons/KUGreen11.png"
+        class="ku-logo"
+        alt="University of Kashmir Logo"
+      />
+
+      <div class="brand-text">
+        <h1>Campus Map</h1>
+        <p>University of Kashmir</p>
+      </div>
+    </div>
+
+    <div class="search-box">
+      <span class="search-icon">🔍</span>
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Search building, department, gate, cafe..."
+      />
+    </div>
+
+    <nav class="nav-links">
+      <a href="about.html">ABOUT</a>
+      <a href="schools.html">SCHOOLS</a>
+      <a href="on-campus.html">ON CAMPUS</a>
+      <a href="help.html">HELP</a>
+    </nav>
+
+    <button class="mobile-search-btn" id="mobileSearchBtn">
+      🔍
+    </button>
+
+    <button class="hamburger-btn" id="hamburgerBtn">
+      ☰
+    </button>
+  </header>
+
+  <div id="mobileSearchOverlay" class="mobile-search-overlay">
+    
+    <div class="ms-header">
+      <button id="msBackBtn" class="ms-back-btn">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      </button>
+      <input type="text" id="msInput" class="ms-input" placeholder="Search building, department, gate...">
+    </div>
+
+    <div class="ms-filters-container">
+      <div class="ms-filters-scroll">
+        <button class="ms-filter-chip active" data-filter="all">🌍 All</button>
+        <button class="ms-filter-chip" data-filter="academic">🏫 Academic</button>
+        <button class="ms-filter-chip" data-filter="hostel">🏢 Hostels</button>
+        <button class="ms-filter-chip" data-filter="cafe">☕ Cafes</button>
+        <button class="ms-filter-chip" data-filter="gate">🚪 Gates</button>
+        <button class="ms-filter-chip" data-filter="parking">🅿️ Parking</button>
+      </div>
+    </div>
+
+    <div id="msResults" class="ms-results-container">
+      <div class="ms-empty-state">Start typing to search the campus...</div>
+    </div>
+
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-header">
+      <h2>Campus Menu</h2>
+      <button id="closeMenuBtn">×</button>
+    </div>
+
+    <a href="about.html">About Campus</a>
+    <a href="schools.html">Schools</a>
+    <a href="on-campus.html">On Campus</a>
+    <a href="help.html">Help</a>
+  </div>
+
+  <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+
+  <aside class="filter-panel" id="filterPanel">
+    <h3>FILTER</h3>
+
+    <button class="filter-btn active" data-filter="all">
+      <span>●</span> All
+    </button>
+
+    <button class="filter-btn" data-filter="academic">
+      <span>🏫</span> Academic
+    </button>
+
+    <button class="filter-btn" data-filter="hostel">
+      <span>🏢</span> Hostels
+    </button>
+
+    <button class="filter-btn" data-filter="cafe">
+      <span>☕</span> Cafes
+    </button>
+    <button class="filter-btn" data-filter="gate">
+      <span>🚪</span> Gates
+    </button>
+
+    <button class="filter-btn" data-filter="parking">
+      <span>🅿️</span> Parking
+    </button>
+
+    <button class="filter-scroll-btn" id="filterScrollBtn">
+      ›
+    </button>
+
+   <button class="filter-btn" id="nearbyBtn">
+  <span>📍</span>
+  Nearby
+</button>
+    
+  </aside>
+
+  <button class="mobile-nearby-btn" id="mobileNearbyBtn">
+    📍 Nearby Places
+  </button>
+
+  <div class="weather-card">
+    <div class="sun">☀️</div>
+    <div>
+      <h2>21°</h2>
+      <p>Srinagar</p>
+    </div>
+  </div>
+
+  <div class="bottom-ui-wrapper">
+    
+    <section class="info-card" id="infoCard">
+      <h2>Campus Map</h2>
+      <p>
+        Search building name, department, gate, cafe or select a category.
+      </p>
+    </section>
+
+    <div class="navigation-mode" id="navigationMode">
+      <div class="mode-title">NAVIGATION MODE</div>
+      <div class="nav-mode-switch">
+        <button id="walk-btn" class="nav-mode-btn active">🚶 Walk</button>
+        <button id="vehicle-btn" class="nav-mode-btn">🚗 Vehicle</button>
+      </div>
+    </div>
+
+    <button class="directions-btn" id="directionsBtn">
+      START DIRECTIONS
+    </button>
+    
+  </div>
+  <div id="imageModal" class="image-modal-overlay">
+  <button id="closeImageModal" class="image-modal-close">&times;</button>
+  <img id="enlargedImage" class="image-modal-content" src="" alt="Enlarged Campus View">
+</div>
+
+  <div class="map-tools">
+    <button id="zoomInBtn">+</button>
+    <button id="zoomOutBtn">−</button>
+    <button id="resetViewBtn">↻</button>
+    <button id="locateBtn">⌖</button>
+    <button id="toggle3DBtn">3D</button>
+  </div>
+
+  <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

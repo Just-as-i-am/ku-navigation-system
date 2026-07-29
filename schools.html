@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Schools & Departments | Campus Navigation System</title>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="info-page-body">
+
+  <main class="info-page">
+
+    <!-- TOP NAVBAR -->
+    <header class="info-navbar">
+      <div class="brand">
+        <a href="index.html">
+          <img src="icons/KUGreen11.png" alt="University of Kashmir Logo" />
+        </a>
+
+        <div class="brand-text">
+          <h1>Campus Map</h1>
+          <p>University of Kashmir</p>
+        </div>
+      </div>
+
+      <nav class="info-nav-links">
+        <a href="index.html">Map</a>
+        <a href="about.html">About</a>
+        <a href="schools.html" class="active">Schools</a>
+        <a href="campus.html">On Campus</a>
+        <a href="help.html">Help</a>
+      </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="info-hero">
+      <div class="hero-badge">Schools & Departments</div>
+
+      <h1>
+        Find academic buildings, schools and departments
+        <span>inside the campus</span>
+      </h1>
+
+      <p>
+        This page provides an overview of academic locations that can be searched
+        and explored through the Campus Navigation System. Students and visitors
+        can use the map to locate departments, schools and related academic blocks.
+      </p>
+
+      <div class="hero-actions">
+        <a href="index.html" class="primary-link">Open Campus Map</a>
+        <a href="help.html" class="secondary-link">How to Search</a>
+      </div>
+    </section>
+
+    <!-- ACADEMIC OVERVIEW -->
+    <section class="info-section schools-overview">
+      <div class="section-heading">
+        <span>Academic Navigation</span>
+        <h2>Search by department or academic block</h2>
+      </div>
+
+      <p>
+        In many cases, one building may contain multiple departments or offices.
+        This system is designed to support searching not only by building name,
+        but also by department name, making it easier for users to reach the correct
+        academic location.
+      </p>
+    </section>
+
+    <!-- SCHOOL / DEPARTMENT CARDS -->
+    <section class="school-grid">
+
+      <article class="school-card">
+        <div class="school-icon">🎓</div>
+        <h3>Academic Departments</h3>
+        <p>
+          Search academic departments directly from the map search option and select
+          the correct result to view details.
+        </p>
+      </article>
+
+      <article class="school-card">
+        <div class="school-icon">🏛️</div>
+        <h3>Academic Blocks</h3>
+        <p>
+          Academic buildings are shown on the map with clear styling so users can
+          identify learning and teaching areas.
+        </p>
+      </article>
+
+      <article class="school-card">
+        <div class="school-icon">📚</div>
+        <h3>Libraries</h3>
+        <p>
+          Important study spaces such as libraries can be marked and searched as
+          campus points of interest.
+        </p>
+      </article>
+
+      <article class="school-card">
+        <div class="school-icon">🧪</div>
+        <h3>Labs & Research Areas</h3>
+        <p>
+          Labs and research-related places can be added as dedicated points for
+          easier academic navigation.
+        </p>
+      </article>
+
+      <article class="school-card">
+        <div class="school-icon">🧭</div>
+        <h3>Route to Department</h3>
+        <p>
+          After selecting a department or building, users can get road-based directions
+          from their current location.
+        </p>
+      </article>
+
+      <article class="school-card">
+        <div class="school-icon">🔎</div>
+        <h3>Department Search</h3>
+        <p>
+          The search system can be improved by adding department names inside the
+          GeoJSON data of each building.
+        </p>
+      </article>
+
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="info-section">
+      <div class="section-heading">
+        <span>How it works</span>
+        <h2>Department-based searching</h2>
+      </div>
+
+      <div class="reason-list">
+        <div class="reason-item">
+          <strong>01</strong>
+          <p>
+            Each building can store a building name and one or more department names
+            inside its properties.
+          </p>
+        </div>
+
+        <div class="reason-item">
+          <strong>02</strong>
+          <p>
+            When a user searches, the app checks both building names and department
+            names for matching results.
+          </p>
+        </div>
+
+        <div class="reason-item">
+          <strong>03</strong>
+          <p>
+            The selected building is highlighted on the map and the information card
+            displays its departments and details.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- DATA NOTE -->
+    <section class="tech-section">
+      <div>
+        <h2>Recommended Data Fields</h2>
+        <p>
+          For better academic search, each building feature should contain clean
+          and consistent property names.
+        </p>
+      </div>
+
+      <div class="tech-tags">
+        <span>building_name</span>
+        <span>departments</span>
+        <span>type: academic</span>
+        <span>description</span>
+        <span>image</span>
+        <span>floor</span>
+      </div>
+    </section>
+
+  </main>
+
+</body>
+</html>

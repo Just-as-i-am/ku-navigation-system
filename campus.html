@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>On Campus | Campus Navigation System</title>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="info-page-body">
+
+  <main class="info-page">
+
+    <!-- TOP NAVBAR -->
+    <header class="info-navbar">
+      <div class="brand">
+        <a href="index.html">
+          <img src="icons/KUGreen11.png" alt="University of Kashmir Logo" />
+        </a>
+
+        <div class="brand-text">
+          <h1>Campus Map</h1>
+          <p>University of Kashmir</p>
+        </div>
+      </div>
+
+      <nav class="info-nav-links">
+        <a href="index.html">Map</a>
+        <a href="about.html">About</a>
+        <a href="schools.html">Schools</a>
+        <a href="campus.html" class="active">On Campus</a>
+        <a href="help.html">Help</a>
+      </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="info-hero">
+      <div class="hero-badge">On Campus</div>
+
+      <h1>
+        Explore important places and services
+        <span>inside the campus</span>
+      </h1>
+
+      <p>
+        The Campus Navigation System helps users discover important non-academic
+        places such as hostels, gates, cafes, parking areas, libraries, shops and
+        other useful campus points.
+      </p>
+
+      <div class="hero-actions">
+        <a href="index.html" class="primary-link">Open Campus Map</a>
+        <a href="facilities.html" class="secondary-link">View Facilities</a>
+      </div>
+    </section>
+
+    <!-- CAMPUS PLACES GRID -->
+    <section class="campus-place-grid">
+
+      <article class="campus-place-card">
+        <div class="campus-place-icon">🏠</div>
+        <h3>Hostels</h3>
+        <p>
+          Hostel buildings can be shown and filtered separately, helping students
+          and visitors quickly find residential areas inside the campus.
+        </p>
+      </article>
+
+      <article class="campus-place-card">
+        <div class="campus-place-icon">🚪</div>
+        <h3>Gates</h3>
+        <p>
+          Campus entry and exit gates are important navigation points for visitors,
+          transport access and route planning.
+        </p>
+      </article>
+
+      <article class="campus-place-card">
+        <div class="campus-place-icon">☕</div>
+        <h3>Cafes & Canteens</h3>
+        <p>
+          Food points such as cafes, canteens and refreshment areas can be searched
+          and displayed as points of interest.
+        </p>
+      </article>
+
+      <article class="campus-place-card">
+        <div class="campus-place-icon">🅿️</div>
+        <h3>Parking</h3>
+        <p>
+          Parking zones can be displayed on the map to guide users toward vehicle
+          parking areas near important buildings.
+        </p>
+      </article>
+
+      <article class="campus-place-card">
+        <div class="campus-place-icon">📚</div>
+        <h3>Libraries</h3>
+        <p>
+          Libraries and study spaces can be highlighted to help students quickly
+          locate academic support facilities.
+        </p>
+      </article>
+
+      <article class="campus-place-card">
+        <div class="campus-place-icon">🛒</div>
+        <h3>Shops & Services</h3>
+        <p>
+          Shops, stationery points and other small services can be added as POIs
+          for better campus usability.
+        </p>
+      </article>
+
+    </section>
+
+    <!-- FILTER EXPLANATION -->
+    <section class="info-section">
+      <div class="section-heading">
+        <span>Map Filters</span>
+        <h2>Use filters to focus on what you need</h2>
+      </div>
+
+      <div class="reason-list">
+        <div class="reason-item">
+          <strong>All</strong>
+          <p>
+            Shows all available campus features including buildings, roads and
+            important points of interest.
+          </p>
+        </div>
+
+        <div class="reason-item">
+          <strong>Hostels</strong>
+          <p>
+            Displays hostel-related locations and makes residential areas easier
+            to identify.
+          </p>
+        </div>
+
+        <div class="reason-item">
+          <strong>Cafes</strong>
+          <p>
+            Shows cafes, canteens and refreshment points for quick access.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- MAP USE CASE -->
+    <section class="tech-section">
+      <div>
+        <h2>How campus places are stored</h2>
+        <p>
+          Campus locations are stored using GeoJSON data. Buildings are usually
+          polygons, roads are lines and points of interest such as gates or cafes
+          are point features.
+        </p>
+      </div>
+
+      <div class="tech-tags">
+        <span>Hostels</span>
+        <span>Gates</span>
+        <span>Cafes</span>
+        <span>Parking</span>
+        <span>Libraries</span>
+        <span>POI Layer</span>
+        <span>Land Use</span>
+      </div>
+    </section>
+
+  </main>
+
+</body>
+</html>
